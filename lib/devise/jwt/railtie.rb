@@ -7,7 +7,7 @@ module Devise
     # Pluck to rails
     class Railtie < Rails::Railtie
       initializer 'devise-jwt-middleware' do |app|
-        app.middleware.insert_after Warden::Manager
+        app.middleware.insert_after Warden::Manager, Warden::JWTAuth::Middleware
 
         config.after_initialize do
           Rails.application.reload_routes!
